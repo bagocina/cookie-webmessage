@@ -10,6 +10,7 @@
 */
 
 (function($){
+
 	$.fn.cookieWebmessage = function(options) {
 		// defualt settings
 		var config = $.extend({
@@ -22,15 +23,34 @@
 			'styleBgColor': '#b3b3b3',
 			'styleTextColor': 'black',
 			'textcloseBtn': 'auto',
-			'manualContent': 'none',
+			'manualContent': 'auto',
 			'closeBtn': 'auto',
-			'cookieInfo': '',
-			'position' : 'bottom'
+			'cookieInfo': 'popup',
+			'position': 'bottom',
+			'language': 'sk'
 		}, options);
 
 		return this.each(function() {
 
+			// load language file
+			var language = {};
+			$.ajax({
+				async: false,
+				url: '../'+config.language+'.txt',
+			}).done(function(data) {
+				$(data).filter('text').each(function(){
+					language[$(this).attr('id')] = $(this).html();
+				});
+			});
+
 			var cookieWebmessage = $(this);
+
+			var cwmDefaultMessage = language.default_message;
+			var cwmMoreInfo = language.more_info;
+			var cwmCookieInfo = language.cookie_info;
+			var cwmCookieInfoTitle = language.cookie_info_title;
+			var cwmAccept = language.accept;
+			var cwmClose = language.close;
 
 			cookieWebmessage.hide();
 
@@ -43,7 +63,7 @@
 			}
 			cookieWebmessage.css('left', '0');
 			cookieWebmessage.css('right', '0');
-			cookieWebmessage.css('padding', '0 85px 0 20px');
+			cookieWebmessage.css('padding', '8px 85px 8px 20px');
 			cookieWebmessage.css('border-bottom', '1px solid #ccc');
 			cookieWebmessage.css('box-shadow', '0px 0px 3px #ccc');
 			cookieWebmessage.css('z-index', '99');
@@ -61,21 +81,46 @@
 			}
 
 			// default content
-			if (config.manualContent == 'none') {
-				if (config.cookieInfo == "internal") {
-					cookieWebmessage.append('<p>Tento web používa súbory cookies. Prehliadaním webu vyjadrujete súhlas s ich používaním.</p>');
-				} else {
-					cookieWebmessage.append('<p>Tento web používa súbory cookies. Prehliadaním webu vyjadrujete súhlas s ich používaním. <a href="'+config.cookieInfo+'">Viac info</a></p>');
-				}
+			if (config.manualContent == 'auto') {
 				cookieWebmessage.find('p').css('margin', '0.6em 0');
+				cookieWebmessage.append(cwmDefaultMessage);
 			} else {
 				cookieWebmessage.append(config.manualContent);
+			}
+
+			// cookies info link
+			if (config.cookieInfo == "popup") {
+				if (config.bootstrap) {
+					cookieWebmessage.append(' <a data-toggle="modal" data-target="#cookie-webmessage-btstrp" style="cursor: pointer;">'+cwmMoreInfo+'</a>');
+				} else {
+					cookieWebmessage.append(' <a id="cookie-webmessage-jq-a" style="cursor: pointer;">'+cwmMoreInfo+'</a>');
+					$( document ).ready(function() {
+						$("#cookie-webmessage-jq-a").click(function() {
+							$("#cookie-webmessage-jq").toggle();
+						});
+					});
+				}
+			} else if (config.cookieInfo == 'none') {
+				cookieWebmessage.append('');
+			} else {
+				cookieWebmessage.append(' <a href="'+config.cookieInfo+'">'+cwmMoreInfo+'</a>');
+			}
+
+			// popup html
+			if (config.cookieInfo == "popup") {
+				if (config.bootstrap) {
+					var modal_html = '<div id="cookie-webmessage-btstrp" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">'+cwmCookieInfoTitle+'</h4></div><div class="modal-body"><p>'+cwmCookieInfo+'</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">'+cwmClose+'</button></div></div></div></div>';
+					$('body').prepend(modal_html);
+				} else {
+					var dialog_html = '<div id="cookie-webmessage-jq" style="display: none; overflow-y: auto; max-height: 120px; margin-top: 5px;"><br /><h2 style="margin: 0px;">'+cwmCookieInfoTitle+'</h2> <br /> '+cwmCookieInfo+'</div>';
+					cookieWebmessage.append(dialog_html);
+				}
 			}
 
 			// default submit button
 			if (config.closeBtn == 'auto') {
 				if (config.textcloseBtn == 'auto') {
-					textcloseBtn = 'Súhlasím';
+					textcloseBtn = cwmAccept;
 				} else {
 					textcloseBtn = config.textcloseBtn;
 				}

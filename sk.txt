@@ -1,0 +1,43 @@
+<text id="more_info">Viac informácií</text>
+<text id="default_message">Tento web používa súbory cookies. Prehliadaním webu vyjadrujete súhlas s ich používaním.</text>
+<text id="cookie_info_title">Cookie info</text>
+<text id="accept">Súhlasím</text>
+<text id="close">Zavrieť</text>
+<text id="cookie_info">
+	<strong>Súbory cookie</strong><br />
+    <p>
+		S cieľom zabezpečiť riadne fungovanie tejto webovej lokality ukladáme niekedy na
+		vašom zariadení malé dátové súbory, tzv. cookie. Je to bežná prax väčšiny veľkých
+		webových lokalít.
+	</p>
+
+    <strong>Čo sú súbory cookie?</strong><br />
+	<p>
+		Súbor cookie je malý textový súbor, ktorý webová lokalita ukladá vo vašom počítači
+		alebo mobilnom zariadení pri jej prehliadaní. Vďaka tomuto súboru si webová lokalita
+		na určitý čas uchováva informácie o vašich krokoch a preferenciách (ako sú prihlasovacie
+		meno, jazyk, veľkosť písma a iné nastavenia zobrazovania), takže ich pri ďalšej návšteve
+		lokality alebo prehliadaní jej jednotlivých stránok nemusíte opätovne uvádzať.
+	</p>
+
+    <strong>Ako používame súbory cookie?</strong><br />
+    <p>
+		Tieto webstránky používajú súbory cookies na zapamätanie si použivateľských nastavení, pre
+		lepšie prispôsobenie reklám záujmom návštevníkov a pre nevyhnutnú funkcionalitu webstránok.
+	</p>
+
+    <strong>Ako kontrolovať súbory cookie</strong><br />
+	<p>
+    	Súbory cookie môžete kontrolovať alebo zmazať podľa uváženia – podrobnosti si pozrite na
+		stránke aboutcookies.org.  Môžete vymazať všetky súbory cookie uložené vo svojom počítači
+		a väčšinu prehliadačov môžete nastaviť tak, aby ste im znemožnili ich ukladanie. V takomto
+		prípade však pravdepodobne budete musieť pri každej návšteve webovej lokality manuálne upravovať
+		niektoré nastavenia a niektoré služby a funkcie nebudú fungovať.
+	</p>
+
+    <strong>Ako odmietnuť používanie súborov cookie</strong><br />
+	<p>
+    	Používanie súborov cookie je možné nastaviť pomocou Vášho internetového prehliadača. Väčšina
+		prehliadačov súbory cookie automaticky prijíma už vo úvodnom nastavení.
+	</p>
+</text>
