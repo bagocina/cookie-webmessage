@@ -36,7 +36,7 @@
 			var language = {};
 			$.ajax({
 				async: false,
-				url: '../'+config.language+'.txt',
+				url: 'lang/'+config.language+'.txt',
 			}).done(function(data) {
 				$(data).filter('text').each(function(){
 					language[$(this).attr('id')] = $(this).html();
